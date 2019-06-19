@@ -6,7 +6,7 @@
 /* See the file NOTICE for conditions of use and distribution. */
 
 /* The main code for delivering a message. */
-
+/*samoilov 19.06.2019 DSN russification*/
 
 #include "exim.h"
 #include "transports/smtp.h"
@@ -7345,15 +7345,18 @@ if (addr_senddsn)
     moan_write_from(f);
     fprintf(f, "Auto-Submitted: auto-generated\n"
 	"To: %s\n"
-	"Subject: Delivery Status Notification\n"
-	"Content-Type: multipart/report; report-type=delivery-status; boundary=%s\n"
+	"Subject: Уведомление о статусе доставки\n"
+	"Content-Type: multipart/report;  charset=utf-8; report-type=delivery-status; boundary=%s\n"
 	"MIME-Version: 1.0\n\n"
 
 	"--%s\n"
-	"Content-type: text/plain; charset=us-ascii\n\n"
+	"Content-type: text/plain; charset=utf-8\n\n"
 
-	"This message was created automatically by mail delivery software.\n"
-	" ----- The following addresses had successful delivery notifications -----\n",
+	"Это сообщение создано автоматически почтовой системой КНЦ РАН.\n"
+	"This message was created automatically by mail delivery software of KSC RAS.\n"
+	" ----- Ниже адреса, на которые было успешно доставлено ваше сообщение -----\n"
+	" ---- The following addresses had successful delivery notifications -----\n",
+	
       sender_address, bound, bound);
 
     for (addr_dsntmp = addr_senddsn; addr_dsntmp;
